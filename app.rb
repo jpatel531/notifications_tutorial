@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'pusher'
+require 'cgi'
 
 pusher = Pusher::Client.new({
 	app_id: ENV["PUSHER_APP_ID"],
@@ -12,7 +13,7 @@ get '/' do
 end
 
 post '/notification' do
-	message = params[:message]
+	message = CGI.escape_html params[:message]
 	pusher.trigger('notifications', 'new_notification', {
 		message: message
 	})
