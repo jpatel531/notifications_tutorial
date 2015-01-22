@@ -8,9 +8,8 @@ get '/' do
 end
 
 post '/notification' do
+	message = params[:message]
 	Pusher['notifications'].trigger('notification', {
-		message: 'hello world'
+		message: message
 	})
 end
-
-

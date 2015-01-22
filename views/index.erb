@@ -10,6 +10,8 @@
 </head>
 <body>
 
+	<input class="create-notification" placeholder="Send a notification :)"></input>
+
 	<ul class="notifications-list">
 	</ul>
 	
@@ -23,6 +25,16 @@
 		var message = notification.message;
 		var notificationHtml = "<li class='notification'>" + message + "</li>"
 		$('ul.notifications-list').append(notificationHtml);
+	});
+
+	$('input.create-notification').on('keydown', function(event){
+		if (event.keyCode != 13) return;
+
+		var text = this.value;
+
+		$.post('/notification', {message: text}).success(function(){
+			console.log('Notification sent!');
+		});
 	});
 
 	</script>
