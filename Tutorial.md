@@ -158,8 +158,8 @@ Now, within your HTML, create a div, with class 'notification', such as `<div cl
 <html>
 <head>
     <title>Realtime Notifications</title>
-    <script src="http://js.pusher.com/2.2/pusher.min.js" type="text/javascript"></script>
-    <script src="https://code.jquery.com/jquery-2.1.3.min.js" type="text/javascript"></script>
+    <script src="//js.pusher.com/2.2/pusher.min.js" type="text/javascript"></script>
+    <script src="//code.jquery.com/jquery-2.1.3.min.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -205,7 +205,7 @@ end
 
 Run your server and open '/', showing `index.html`, on one browser window.
 
-Then, open `/notification` URL in another browser window and you will see 'hello world' appear on the first window.
+Then, open the `/notification` URL in another browser window and you will see 'hello world' appear on the first window.
     
 
 ###Step 3: Make It Interactive
