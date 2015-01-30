@@ -84,7 +84,6 @@ First off, import the Pusher package or library. And then we initialise our Push
 
 Now, for testing purposes we’ll trigger an event called `my_event` on a channel called `my_channel`. We'll give this event an arbitrary payload, such as `{message: 'hello world'}`.
 
-// How do we know what files we’re editing for each runtime? i.e. app.rb, app.py and notification.php
 
 ```ruby
 require 'pusher'
@@ -206,11 +205,6 @@ get '/' do
 end
 ```
 
-```php
-// notification/index.php
-pusher->trigger( … );
-```
-
 Run your server and open '/', showing `index.html`, on one browser window.
 
 Then, open `/notification` URL in another browser window and you will see 'hello world' appear on the first window.
@@ -264,10 +258,6 @@ post '/notification' do
 end
 ```
 
-```php
-$message = $_POST[‘message’];
-```
-    
 Now, open up a second browser to show the `index.html` file. If you type a piece of text into your input box and click ‘Go!’, you'll see that all browsers receive your new notification.
 
 ###Step 4: Improve The Notification Experience
@@ -316,5 +306,3 @@ Sidebars:
 
 * Ngrok
 * Input sanitization
-
-
