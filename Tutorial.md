@@ -47,11 +47,9 @@ Install the Pusher library for your given language:
 
 [PHP](): `composer require pusher/pusher-php-server`
 
-// make sure all the tabs sync
-
 Create an application, and name it whatever you wish, e.g. 'Notifications Tutorial'. On the page for your application, you’ll find your application credentials.
 
-//gif goes here
+![App Creation](https://raw.githubusercontent.com/jpatel531/notifications_tutorial/content/images/new_app.gif)
 
 Create a directory called `notifications` with a structure that looks like this: 
 
@@ -169,7 +167,7 @@ Now, within your HTML, create a div, with class 'notification', such as `<div cl
 
     <script>
 
-    var pusher = new Pusher(‘YOUR_APP_KEY’');
+    var pusher = new Pusher('YOUR_APP_KEY');
 
     var notificationsChannel = pusher.subscribe('notifications');
 
