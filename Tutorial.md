@@ -47,6 +47,8 @@ Install the Pusher library for your given language:
 
 [PHP](): `composer require pusher/pusher-php-server`
 
+[Node](): `npm install pusher`
+
 Create an application, and name it whatever you wish, e.g. 'Notifications Tutorial'. On the page for your application, you’ll find your application credentials.
 
 ![App Creation](https://raw.githubusercontent.com/jpatel531/notifications_tutorial/content/images/new_app.gif)
@@ -71,6 +73,12 @@ index.html
 notification / index.php
 ```
 
+Node (Using Express)
+```
+routes / notification.js
+views / index.jade
+```
+
 
 If at any point you are stuck, [feel free to browse the source code]().
 
@@ -92,8 +100,48 @@ pusher = Pusher::Client.new app_id: 'YOUR APP ID', key: 'YOUR APP KEY', secret: 
     
 pusher.trigger('my_channel', 'my_event', {
     message: 'hello world'
-})
-    
+}) 
+```
+
+```python
+import pusher
+
+p = pusher.Pusher(
+  app_id='YOUR APP ID',
+  key='YOUR APP KEY',
+  secret='YOUR APP SECRET'
+)
+
+# trigger on my_channel' an event called 'my_event' with this payload:
+
+p['my_channel'].trigger('my_event', {'message': 'hello world'})
+```
+
+```php
+require(dirname(__FILE__).'/../vendor/autoload.php');
+
+$pusher = new Pusher('YOUR APP KEY', 'YOUR APP SECRET', 'YOUR APP ID');
+
+// trigger on my_channel' an event called 'my_event' with this payload:
+
+$data['message'] = 'hello world';
+$pusher->trigger('my_channel', 'my_event', $data);
+```
+
+```js
+var Pusher = require('pusher');
+
+var pusher = new Pusher({
+   appId: 'YOUR APP ID',
+   key: 'YOUR APP KEY',
+   secret: 'YOUR APP SECRET'
+});
+
+// trigger on my_channel' an event called 'my_event' with this payload:
+
+pusher.trigger('my_channel', 'my_event', {
+   message: "hello world"
+});
 ```
 
 Open up the Pusher debug console for the app you have created. Then execute the code in the file you’ve just edited.
@@ -103,6 +151,8 @@ Ruby: ` ruby app.rb`
 Python: `python app.py`
 
 PHP: `php notification/index.php`
+
+Node: `node routes/notification.js`
 
 You should see the event pop up in the Pusher debug console. Pretty nifty, huh?
 
@@ -203,6 +253,32 @@ get '/' do
 end
 ```
 
+```python
+@app.route("/")
+def show_index():
+    return render_template('index.html')
+
+@app.route("/notification")
+def trigger_notification():
+    p['notifications'].trigger('new_notification', {'message': 'hello world'})
+    return "Notification triggered!"
+```
+
+```php
+$pusher = new Pusher($app_key, $app_secret, $app_id);
+$data['message'] = 'hello world';
+$pusher->trigger('notifications', 'new_notification', $data);
+```
+
+```js
+router.get('/', function(req, res){
+    pusher.trigger('notifications', 'new_notification', {
+        message: "hello world"
+    });
+    res.send("Notification triggered!")
+});
+```
+
 Run your server and open '/', showing `index.html`, on one browser window.
 
 Then, open the `/notification` URL in another browser window and you will see 'hello world' appear on the first window.
@@ -254,6 +330,30 @@ post '/notification' do
         message: message
     })
 end
+```
+
+```python
+@app.route("/notification", methods=['POST'])
+def trigger_notification():
+    message =  request.form['message']
+    p['notifications'].trigger('new_notification', {'message': message})
+    return "Notification triggered!"
+```
+
+```php
+$text = $_POST['message'];
+$data['message'] = $text;
+$pusher->trigger('notifications', 'new_notification', $data);
+```
+
+```js
+router.post('/', function(req, res){
+    var message = req.param('message');
+    pusher.trigger('notifications', 'new_notification', {
+        message: message
+    });
+    res.send("Notification triggered!")
+});
 ```
 
 Now, open up a second browser to show the `index.html` file. If you type a piece of text into your input box and click ‘Go!’, you'll see that all browsers receive your new notification.
