@@ -394,13 +394,18 @@ Then open up 'pusher-notifications-tutorial.ngrok.com' in your phone, send yours
 
 ###What Now?
 
-Docs
-Try other stuff e.g. different toastr notifications
-Try other notification libraries … a few links
-If you don’t want the triggererer of the notification to see the notification they you can exclude recipients
-----
+Have a look at [our documentation](http://pusher.com/docs) to other ways in your can integrate Pusher into your application. 
 
-Sidebars:
+To extend what you've built, you might want to have a look at the [other types of notification](http://codeseven.github.io/toastr/demo.html) Toastr can provide. 
 
-* Ngrok
-* Input sanitization
+Alternatively, you could exclude the sender of the notification from receiving the alert, by using `socket_id`s to [filter recipients](https://pusher.com/docs/server_api_guide/server_excluding_recipients).
+
+Here are links to other Javascript notification libraries you can use:
+
+* [Notify.js](http://notifyjs.com/)
+* [Noty](http://ned.im/noty/)
+* [Alertify.js](http://fabien-d.github.io/alertify.js/)
+* [Humane.js](http://wavded.github.io/humane-js/)
+* [jGrowl](https://github.com/stanlemon/jGrowl)
+
+I hope this tutorial was helpful, and don't be shy to [let us know what you've built out of it](http://twitter.com/pusher).
