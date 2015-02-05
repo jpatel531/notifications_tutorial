@@ -11,9 +11,66 @@
 </head>
 <body>
 
-	<input class="create-notification" placeholder="Send a notification :)"></input>
+	<style type="text/css" media="screen">
+		
+		@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400);
 
-	<button class="submit-notification">Go!</button>
+
+		div.phone {
+			background: url(images/i-phone-5-vector.png);
+			background-size: cover;
+			background-repeat: no-repeat;
+			width: 612px;
+			height: 990px;
+		}
+
+		input.create-notification {
+		  outline: none;
+		  border: none;
+		  width: 100%;
+		  font-size: 60px;
+		  text-align: center;
+		  font-family: 'Source Sans Pro', sans-serif;
+		  font-weight: 200;
+
+		}
+
+		.inputs {
+			margin-top: 300px;
+			text-align: center;
+		}
+
+		button.submit-notification {
+			margin-top: 80px;
+			width: 100px;
+			height: 65px;
+			outline: none;
+			font-family: 'Source Sans Pro', sans-serif;
+		  	font-weight: 200;
+		  	font-size: 18px;
+		  	background: none;
+		  	background-color: rgba(135,206,250, 0.2);
+		  	border: 1px solid rgba(0,0,0,0.05);
+		  	border-radius: 6px;
+		  	color: rgba(0,0,0,0.6);
+		}
+
+		button.submit-notification:hover {
+			background-color: skyblue;
+			opacity: 0.8;
+			color: white;
+			cursor: pointer;
+			border: none;
+		}
+
+	</style>
+
+	<div class="inputs">
+		<input class="create-notification" placeholder="Send a notification :)"></input>
+		<button class="submit-notification">Go!</button>
+
+	</div>
+
 
 	<div class="notification">
 	</div>
@@ -21,7 +78,7 @@
 
 	<script>
 
-	var pusher = new Pusher('feaf18a411d3cb9216ee');
+	var pusher = new Pusher('5fc7c2b982b526113bff');
 
 	var notificationsChannel = pusher.subscribe('notifications');
 
