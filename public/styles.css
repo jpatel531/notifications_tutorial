@@ -1,0 +1,172 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400);
+
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 200;
+  color: white;
+}
+
+div.phone {
+  background: url(public/images/i-phone-5-vector.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 612px;
+  height: 990px;
+}
+
+input.create-notification {
+  background: transparent !important;
+  border: none;
+  font-size: 28px !important;
+  height: 52px;
+  line-height: 52px;
+  box-shadow: none;
+  width: 400px;
+  vertical-align: middle;
+  color: white;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0;
+}
+
+input.create-notification:hover, input.create-notification:focus {
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: none;
+}
+
+input.create-notification:focus {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+input.create-notification::-webkit-input-placeholder {
+  color: white;
+  font-weight: 200;
+  opacity: 0.6;
+}
+
+.inputs {
+  margin-top: 25px;
+  text-align: center;
+}
+
+/*button.submit-notification:hover, button.submit-notification::focus {
+  background-color: white;
+  cursor: pointer;
+  border: none;
+}*/
+
+div.toast-success {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 200;
+  background-color: skyblue;
+  opacity: 0.2;
+}
+
+div.device {
+  display: inline-block;
+}
+
+div.iphone {
+  height: 580px;
+  width: 280px;
+  background: url(images/iphone.png);
+  background-size: cover;
+}
+
+div.ipad {
+  height: 520px;
+  width: 740px;
+  background: url(images/ipad.png);
+  background-size: cover;
+}
+
+div.iphone-inner {
+  height: 445px;
+  margin-top: 66px;
+  margin-left: 15px;
+  width: 251px;
+  position: absolute;
+  overflow: hidden;
+}
+
+div.ipad-inner {
+  height: 460px;
+  width: 610px;
+  margin-left: 65px;
+  margin-top: 35px;
+  position: absolute;
+  border: 1px solid rgba(0,0,0,0.02);
+}
+
+.iphone-inner .notifications li{
+  list-style: none;
+  height: 85px;
+  width: 90%;
+  background-color: rgba(135,206,250, 0.2);
+  margin: 0 auto;
+  text-align: left;
+}
+
+.iphone-inner .notifications li p {
+  margin-left: 12px;
+  margin-right: 12px;
+  margin-bottom: 8px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.iphone-inner .notifications h4 {
+  padding-top: 8px;
+  margin-left: 10px;
+}
+
+.iphone-inner .notifications {
+  -webkit-padding-start: 0px;
+}
+
+.heading {
+  position: relative;
+  top: 0;
+  width: 100%;
+  height: 35px;
+  background: rgba(0,0,0,0.7);
+  color: white;
+  text-align: center;
+}
+
+.heading h4 {
+  margin: 0 auto;
+  line-height: 35px;
+  font-weight: 200;
+}
+
+span.blue.badge {
+  background-color: red;
+  vertical-align: middle;
+}
+
+
+section.splash{
+  height: 700px;
+  width: 100%;
+  background: -o-linear-gradient(right, #2193b0, #6dd5ed  ); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(right, #2193b0, #6dd5ed  ); /* For Firefox 3.6 to 15 */
+  background: -webkit-linear-gradient(top left, #2193b0, #6dd5ed);
+  background: linear-gradient(to right, #2193b0, #6dd5ed);
+  display: table;
+  text-align: center;
+}
+
+div.splash-inner{
+  margin-top: 150px;
+}
+
+h1.page-heading{
+  color: white;
+  border:none;
+  font-weight: 200;
+  font-size: 36px;
+}
+
+.page-subheading {
+  font-weight: 200;
+}
