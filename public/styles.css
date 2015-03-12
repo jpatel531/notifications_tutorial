@@ -21,11 +21,13 @@ input.create-notification {
   height: 52px;
   line-height: 52px;
   box-shadow: none;
-  width: 400px;
+  width: 318px;
   vertical-align: middle;
   color: white;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 0;
+  letter-spacing: 0.075rem;
+  margin-right: 30px;
 }
 
 input.create-notification:hover, input.create-notification:focus {
@@ -44,21 +46,34 @@ input.create-notification::-webkit-input-placeholder {
   opacity: 0.6;
 }
 
+input.create-notification:focus::-webkit-input-placeholder{
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  opacity: 1;
+}
+
+input.create-notification:focus {
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
 .inputs {
   margin-top: 25px;
   text-align: center;
 }
 
-/*button.submit-notification:hover, button.submit-notification::focus {
-  background-color: white;
-  cursor: pointer;
-  border: none;
-}*/
+a.submit-notification {
+  width: 160px;
+}
 
 div.toast-success {
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: 200;
-  background-color: skyblue;
+  background-color: lightgreen;
   opacity: 0.2;
 }
 
@@ -66,7 +81,7 @@ div.device {
   display: inline-block;
 }
 
-div.iphone {
+/*div.iphone {
   height: 580px;
   width: 280px;
   background: url(images/iphone.png);
@@ -105,8 +120,8 @@ div.ipad-inner {
   background-color: rgba(135,206,250, 0.2);
   margin: 0 auto;
   text-align: left;
-}
-
+}*/
+/*
 .iphone-inner .notifications li p {
   margin-left: 12px;
   margin-right: 12px;
@@ -122,7 +137,7 @@ div.ipad-inner {
 .iphone-inner .notifications {
   -webkit-padding-start: 0px;
 }
-
+*/
 .heading {
   position: relative;
   top: 0;
@@ -145,8 +160,8 @@ span.blue.badge {
 }
 
 
-section.splash{
-  height: 700px;
+header.splash{
+  height: 80%;
   width: 100%;
   background: -o-linear-gradient(right, #2193b0, #6dd5ed  ); /* For Opera 11.1 to 12.0 */
   background: -moz-linear-gradient(right, #2193b0, #6dd5ed  ); /* For Firefox 3.6 to 15 */
@@ -156,8 +171,13 @@ section.splash{
   text-align: center;
 }
 
+footer{
+  /*height: 20%;*/
+}
+
 div.splash-inner{
   margin-top: 150px;
+  overflow:hidden;
 }
 
 h1.page-heading{
@@ -169,4 +189,56 @@ h1.page-heading{
 
 .page-subheading {
   font-weight: 200;
+  line-height: 32px;
+}
+
+div.row {
+  margin: 0 !important;
+}
+
+div.devices {
+  margin-top: 75px;
+}
+
+div#ipad {
+  display:inline-block;
+  width: 440px;
+  height: 540px;
+  background: url(images/iPad_white_thumb.png);
+  background-size: cover;
+  margin-right: 50px;
+}
+
+div#iphone {
+  display: inline-block;
+  width: 260px;
+  height: 470px;
+  background: url(images/iphone.png);
+  background-size: cover;
+}
+
+div.devices div {
+  margin-bottom: -10px;
+}
+
+div#ipad-inner {
+  /*background-color: salmon; */
+  height: 480px;
+  width: 381px;
+  margin-left: 28px;
+  margin-top: 55px;
+}
+
+div#iphone-inner {
+  margin-left: 15px;
+  width: 230px;
+  /*background-color: salmon;*/
+  margin-top: 63px;
+  height: 403px;
+}
+
+@media screen and (max-width: 760px) {
+  div#ipad{
+    display:none;
+  }
 }

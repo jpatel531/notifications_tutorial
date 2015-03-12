@@ -13,134 +13,55 @@
 	<script src="http://js.pusher.com/2.2/pusher.min.js" type="text/javascript"></script>
 	<script src="https://rawgit.com/jpatel531/hot-push/master/lib/client.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+	<script src="notification.js"></script>
 </head>
 <body>
 
+	<section class="content">
 
-	<section class="splash">
+		<header class="splash">
 
-		<div class="splash-inner">
-			<div class="row">
-				<h1 class="page-heading">In-App HTML5 Realtime Notifications</h1>
-				<h4 class="page-subheading">Lorem ipsum dolor sit amet, consectetur adipiscing elit</h2>
-			</div>
-
-			<!-- <button name="button" class="btn btn-lg btn-clear btn-wide btn-default">Try it out!</button> -->
-
-
-			<div class="inputs">
-				<input type="text" class="create-notification" name="name" placeholder="Type your message here..." autocomplete="off">
-				<a class="submit-notification btn btn-lg btn-clear btn-wide btn-default">Send Message</a>
-
-		</div>
+			<div class="splash-inner">
+				<div class="row">
+					<h1 class="page-heading">In-App HTML5 Realtime Notifications</h1>
+					<h4 class="page-subheading">Lorem ipsum dolor sit amet, consectetur adipiscing elit</h2>
+					</div>
 
 
-	</section>
+					<div class="inputs">
+						<input type="text" class="create-notification" name="name" placeholder="Type your message here..." autocomplete="off">
+						<a class="submit-notification btn btn-lg btn-clear btn-wide btn-default">Send Message</a>
 
 
+						<div class="devices">
 
-	<div class="container">
+							<div id="ipad">
+								<div id="ipad-inner"></div>
+							</div>
 
-		<!-- <div class="row">
-			<div class="inputs">
-				<input class="create-notification" placeholder="Write here and hit enter"></input>
-				<!-- <button class="submit-notification">Go!</button> -->
+							<div id="iphone">
+								<div id="iphone-inner"></div>
+							</div>
 
-			</div>
-		</div> -->
 
-		<a class="show-ipad" href="#">Show iPad</a>
-		<a class="show-iphone" href="#" style="display:none">Show iPhone</a>
-
-		<div class="row" style="text-align: center; margin-top: 50px">
-
-			<div class="device iphone">
-				<div class="iphone-inner">
-					<div class="heading">
-						<h4>
-							Notifications
-							<span class="badge blue"></span>
-						</h4>
+						</div>
 
 					</div>
-					<ul class="notifications"></ul>
-				</div>
-			</div>
-
-			<div class="device ipad" style="display: none">
-				<div class="ipad-inner">
-					<ul class="notifications"></ul>
-				</div>
 
 
-			</div>
-		</div>
+				</header>
 
-	</div>
+				<footer>
 
+				</footer>
 
-
-
-	<script>
-
-	var pusher = new Pusher('5fc7c2b982b526113bff');
-
-	var notificationsChannel = pusher.subscribe('notifications');
-
-	var notificationsReceived = 0;
-
-	var originalTitle = document.title
-
-	notificationsChannel.bind('new_notification', function(notification){
-		notificationsReceived ++;
-		document.title = "(" + notificationsReceived + ") " + originalTitle
-		$('span.badge').text(notificationsReceived);
-		var message = notification.message;
-		toastr.success(message);
-		var id = notificationsReceived;
-		var now = new Date()
-		$('ul.notifications').prepend(
-			"<li><h4>"+ message + "</h4><p id='" + id + "'>" + moment(now).fromNow() + "</p></li>"
-		)
-		update(id, now)
-	});
-
-	var update = function(id, now) {
-		setInterval(function(){
-			$('p#'+id).text(moment(now).fromNow())
-		}, 5000)
-	}
-
-	var sendNotification = function(){
-		var text = $('input.create-notification').val();
-		if (text === '') return;
-		$.post('/notification', {message: text}).success(function(){
-			console.log('Notification sent!');
-		});
-	};
-
-	$('a.submit-notification').on('click', sendNotification);
-
-	$('.create-notification').on('keydown', function(event){
-		if (event.keyCode === 13) sendNotification();
-	});
-
-	$('.show-ipad').on('click', function(){
-		$('.iphone').hide();
-		$('.ipad').show();
-		$('.show-iphone').show()
-		$('.show-ipad').hide();
-	});
-
-	$('.show-iphone').on('click', function(){
-		$('.ipad').hide();
-		$('.iphone').show();
-		$('.show-ipad').show();
-		$('.show-iphone').hide();
-	});
+			</section>
 
 
-	</script>
+			<script>
 
-</body>
-</html>
+
+		</script>
+
+	</body>
+	</html>
