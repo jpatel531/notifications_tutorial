@@ -1,38 +1,115 @@
 $(function() {
+
+	// add in debounced resize for jQuery
+	(function($,sr){
+	  var debounce = function (func, threshold, execAsap) {
+	      var timeout;
+	      return function debounced () {
+	          var obj = this, args = arguments;
+	          function delayed () {
+              if (!execAsap)
+                func.apply(obj, args);
+              timeout = null;
+	          };
+	          if (timeout)
+              clearTimeout(timeout);
+	          else if (execAsap)
+              func.apply(obj, args);
+
+	          timeout = setTimeout(delayed, threshold || 100);
+	      };
+	  }
+	  jQuery.fn[sr] = function(fn){  return fn ? this.bind('resize', debounce(fn)) : this.trigger(sr); };
+	})(jQuery,'smartresize');
+
+	// functions for handling moving page elements on resize
+	function moveDevicesToBottom() {
+		var remainingHeight = $(window).height() - $('.splash-inner .row').height() + parseInt($('.splash-inner .row .page-heading').css('padding-top')) - 50;
+		if (remainingHeight > 600) {
+			$('.inputs').height(remainingHeight);
+		}
+		moveNotificationSubmitSection(remainingHeight);
+	}
+
+	function moveNotificationSubmitSection(remainingHeight) {
+		if (remainingHeight > 800) {
+			var temp = ($(window).height() - 700) / 2;
+			$('.splash-inner .row .page-heading').css('padding-top', temp + 'px')
+			$('.inputs').height($('.inputs').height() - temp);
+		} else {
+			$('.splash-inner .row .page-heading').css('padding-top', '0')
+		}
+	}
+
+	function scrollToBottomOfMessageSections() {
+		$.makeArray($("section.messages")).forEach(function(el) {
+		$(el).animate({
+		    scrollTop: $(el)[0].scrollHeight
+		  }, 600);
+		 });
+	}
+
+	moveDevicesToBottom();
+	scrollToBottomOfMessageSections();
+
+  $(window).smartresize(function(){
+	  moveDevicesToBottom();
+	});
+
 	var pusher = new Pusher('5fc7c2b982b526113bff');
-
 	var notificationsChannel = pusher.subscribe('notifications');
-
 	var notificationsReceived = 0;
+	var originalTitle = document.title;
 
-	var originalTitle = document.title
+	function addMessageTo(device, message, side, userImgNum) {
+		var id = notificationsReceived;
+		var now = new Date();
+		$('#' + device + ' .messages').append(
+			"<section class='message message-" + side + "'><div class='sender sender-" + userImgNum + "'></div><div class='message-bubble bubble'>" + message + "<article class='time-ago message-" + id + "'>" + moment(now).fromNow() + "</div></section>"
+		)
+		update(id, now);
+	}
 
 	notificationsChannel.bind('new_notification', function(notification){
+
+		// handle incrementing notification received counter
 		notificationsReceived ++;
-		document.title = "(" + notificationsReceived + ") " + originalTitle
-		$('span.badge').text(notificationsReceived);
+		if (notificationsReceived == 1) {
+			$('.notification-circle').css('opacity', '1');
+			$('.notification-circle').text(notificationsReceived);
+		} else if (notificationsReceived > 99) {
+			$('.notification-circle').text('...');
+		} else {
+			$('.notification-circle').text(notificationsReceived);
+		}
+
+		document.title = "(" + notificationsReceived + ") " + originalTitle;
+
+		// add message to devices
+		var userImgNums = ['two', 'four'];
+		var side = notificationsReceived % 2 == 0 ? 'left' : 'right';
+		var userImgNum = side == 'left' ? 'one' : userImgNums[Math.floor(Math.random()*userImgNums.length)];
+		addMessageTo('ipad', notification.message, side, userImgNum);
+		addMessageTo('iphone', notification.message, side, userImgNum);
+
+		// toastr notifications
 		var message = notification.message;
 		toastr.success(message);
-		var id = notificationsReceived;
-		var now = new Date()
-		$('ul.notifications').prepend(
-			"<li><h4>"+ message + "</h4><p id='" + id + "'>" + moment(now).fromNow() + "</p></li>"
-		)
-		update(id, now)
+
+		scrollToBottomOfMessageSections();
 	});
 
 	var update = function(id, now) {
 		setInterval(function(){
-			$('p#'+id).text(moment(now).fromNow())
+			$('article.message-'+id).text(moment(now).fromNow())
 		}, 5000)
 	}
 
 	var sendNotification = function(){
-		console.log('hello there')
 		var text = $('input.create-notification').val();
 		if (text === '') return;
 		$.post('/notification', {message: text}).success(function(){
-			console.log('Notification sent!');
+			$('input.create-notification').val('');
 		});
 	};
 
@@ -40,19 +117,5 @@ $(function() {
 
 	$('.create-notification').on('keydown', function(event){
 		if (event.keyCode === 13) sendNotification();
-	});
-
-	$('.show-ipad').on('click', function(){
-		$('.iphone').hide();
-		$('.ipad').show();
-		$('.show-iphone').show()
-		$('.show-ipad').hide();
-	});
-
-	$('.show-iphone').on('click', function(){
-		$('.ipad').hide();
-		$('.iphone').show();
-		$('.show-ipad').show();
-		$('.show-iphone').hide();
 	});
 })

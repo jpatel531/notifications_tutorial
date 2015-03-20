@@ -1,9 +1,28 @@
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400);
 
+#inputs-height, #page-heading-margin-top, #remaining-height {
+  position: absolute;
+  top: 50px;
+  left: 10px;
+}
+
+#page-heading-margin-top {
+  top: 70px;
+}
+
+#remaining-height {
+  top: 90px;
+}
+
 body {
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: 200;
   color: white;
+  background: -o-linear-gradient(right, #2193b0, #6dd5ed  ); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(right, #2193b0, #6dd5ed  ); /* For Firefox 3.6 to 15 */
+  background: -webkit-linear-gradient(top left, #2193b0, #6dd5ed);
+  background: linear-gradient(to right, #2193b0, #6dd5ed);
+  height: 100vh;
 }
 
 input.create-notification {
@@ -20,6 +39,8 @@ input.create-notification {
   border-radius: 0;
   letter-spacing: 0.075rem;
   margin-right: 30px;
+  position: relative;
+  z-index: 1;
 }
 
 input.create-notification:hover, input.create-notification:focus {
@@ -36,37 +57,47 @@ input.create-notification::-webkit-input-placeholder {
   color: white;
   font-weight: 200;
   opacity: 0.6;
+  -webkit-transition: opacity 0.2s ease-in-out;
+  -moz-transition: opacity 0.2s ease-in-out;
+  -o-transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
 }
 
 input.create-notification:focus::-webkit-input-placeholder{
-  -webkit-transition: all 0.2s ease-in-out;
-  -moz-transition: all 0.2s ease-in-out;
-  -o-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
   opacity: 1;
 }
 
-input.create-notification:focus {
-  -webkit-transition: all 0.2s ease-in-out;
-  -moz-transition: all 0.2s ease-in-out;
-  -o-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
+header.navbar {
+  background: transparent;
+  height: 50px;
+  color: white;
 }
 
 .inputs {
-  margin-top: 25px;
   text-align: center;
+  position: relative;
+  min-height: 600px;
 }
 
 a.submit-notification {
   width: 160px;
+  position: relative;
+  z-index: 1;
 }
 
 div.toast-success {
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: 200;
-  background-color: lightgreen;
-  opacity: 0.2;
+  background-color: #69E5B2;
+  opacity: 0.9;
+}
+
+#toast-container > div, #toast-container > :hover {
+  box-shadow: none;
+}
+
+.toast-top-right {
+  top: 50px;
 }
 
 div.device {
@@ -100,24 +131,19 @@ div.device {
   font-weight: 200;
 }
 
-span.blue.badge {
-  background-color: red;
-  vertical-align: middle;
+section.content {
+  height: calc(100% - 50px);
 }
 
 header.splash{
-  height: 80%;
+  height: 100%;
   width: 100%;
-  background: -o-linear-gradient(right, #2193b0, #6dd5ed  ); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(right, #2193b0, #6dd5ed  ); /* For Firefox 3.6 to 15 */
-  background: -webkit-linear-gradient(top left, #2193b0, #6dd5ed);
-  background: linear-gradient(to right, #2193b0, #6dd5ed);
+  background: transparent;
   display: table;
   text-align: center;
 }
 
 div.splash-inner{
-  margin-top: 50px;
   overflow:hidden;
 }
 
@@ -140,9 +166,18 @@ div.row {
 div.devices {
   width: 65%;
   margin: auto;
-  margin-top: 75px;
+  left: 0;
+  right: 0;
+  height: 100%;
+  bottom: 0;
+  position: absolute;
+  max-width: 900px;
+}
+
+div.devices-inner {
   position: relative;
-  height: 500px;
+  height: 100%;
+  width: 100%;
 }
 
 div#ipad {
@@ -181,11 +216,14 @@ div#ipad-inner {
 }
 
 div#iphone-inner {
-  margin-left: 15px;
-  width: 230px;
+  margin-left: 14px;
+  width: 231px;
   background-color: #FFFFFF;
   margin-top: 63px;
-  height: 403px;
+  height: 397px;
+  -webkit-box-shadow: inset 3px 3px 30px -12px rgba(54,54,54,0.65);
+  -moz-box-shadow: inset 3px 3px 30px -12px rgba(54,54,54,0.65);
+  box-shadow: inset 3px 3px 30px -12px rgba(54,54,54,0.65);
 }
 
 div.device-inner .header .nav {
@@ -201,7 +239,7 @@ div.device-inner .header .nav .back {
   float: left;
   width: 40px;
   height: 100%;
-  border-right: 1px solid rgba(255, 255, 255, 0.6);
+  border-right: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 #iphone div.device-inner .header .nav .back {
@@ -217,7 +255,28 @@ div.device-inner .header .nav .count, div.device-inner .header .nav .phone {
   float: right;
   width: 40px;
   height: 100%;
-  border-left: 1px solid rgba(255, 255, 255, 0.6);
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+div.device-inner .header .nav .count {
+  position: relative;
+}
+
+div.device-inner .header .nav .count .notification-circle {
+  position: absolute;
+  right: 3px;
+  top: 3px;
+  background-color: red;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  opacity: 0;
+  font-size: 10px;
+  text-align: center;
+  -webkit-transition: all 0.1s linear;
+  -moz-transition: all 0.1s linear;
+  -o-transition: all 0.1s linear;
+  transition: all 0.1s linear;
 }
 
 div.device-inner .header .nav .username {
@@ -242,7 +301,7 @@ div.device .profile-bar {
   width: 100%;
   height: 40px;
   background-color: #E7E8EE;
-  padding-top: 5px;
+  padding-top: 9px;
   color: #B9B9B9;
 }
 
@@ -307,8 +366,8 @@ div.device .profile-bar {
 .cards .card header {
   position: relative;
   width: 100%;
-  height: 40px;
-  border-bottom: 1px solid #E1E2E3;
+  height: 42px;
+  border-bottom: 1px solid rgba(225, 226, 227, 0.4);
 }
 
 .cards .card header .img {
@@ -322,7 +381,7 @@ div.device .profile-bar {
 
 .cards .card header .name {
   position: absolute;
-  font-size: 13px;
+  font-size: 12px;
   left: 50px;
   top: 5px;
 }
@@ -338,6 +397,8 @@ div.device .profile-bar {
   padding: 15px 10px;
   width: 100%;
   height: 90px;
+  font-size: 12px;
+  text-align: left;
 }
 
 .cards .card footer {
@@ -371,10 +432,14 @@ div.device .profile-bar {
 }
 
 .chat-popup header {
+  position: absolute;
+  width: 210px;
   height: 30px;
   background-color: #7FD9E3;
   color: #FFFFFF;
-  padding: 3px 5px;
+  padding: 7px 7px;
+  font-size: 13px;
+  z-index: 2;
 }
 
 .chat-popup header .members {
@@ -383,6 +448,181 @@ div.device .profile-bar {
 
 .chat-popup header .cross {
    float: right;
+}
+
+section.messages {
+  margin-top: 30px;
+  height: 80%;
+  width: 100%;
+  overflow: scroll;
+}
+
+section.messages div:last-of-type {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+section.messages section:last-of-type {
+  margin-bottom: 15px;
+}
+
+section.messages .message {
+  margin-bottom: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+section.messages .message-bubble {
+  position: relative;
+  width: 70%;
+  padding: 0px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  color: #5B5B5B;
+  padding: 3px 5px 10px;
+  text-align: left;
+  word-wrap: break-word;
+  -webkit-box-shadow: 0px 3px 5px 0px rgba(50, 50, 50, 0.2);
+  -moz-box-shadow:    0px 3px 5px 0px rgba(50, 50, 50, 0.2);
+  box-shadow:         0px 3px 5px 0px rgba(50, 50, 50, 0.2);
+}
+
+section.messages .message-left .bubble {
+  background: #D3E9E3;
+  float: left;
+  margin-left: 25%;
+}
+
+section.messages .message-left .bubble:after {
+  content: '';
+  position: absolute;
+  border-style: solid;
+  border-width: 7px 10px 7px 0;
+  border-color: transparent #D3E9E3;
+  display: block;
+  width: 0;
+  z-index: 1;
+  left: -10px;
+  top: 14px;
+}
+
+section.messages .message-right .bubble {
+  background: #C9E8F1;
+  float: right;
+  margin-right: 25%;
+}
+
+section.messages .message-right .bubble:after {
+  content: '';
+  position: absolute;
+  border-style: solid;
+  border-width: 7px 0 7px 10px;
+  border-color: transparent #C9E8F1;
+  display: block;
+  width: 0;
+  z-index: 1;
+  right: -10px;
+  top: 14px;
+}
+
+#iphone section.messages {
+  margin-top: 0;
+  height: 90%;
+}
+
+#iphone section.messages div:last-of-type {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+section.messages .message .sender {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  position: absolute;
+  top: 15px;
+}
+
+#ipad section.messages .message .sender {
+  top: 12px;
+  width: 26px;
+  height: 26px;
+}
+
+#ipad section.messages .message-left .sender {
+  left: 10px;
+}
+
+#ipad section.messages .message-right .sender {
+  right: 10px;
+}
+
+section.messages .message-left .sender {
+  left: 12px;
+}
+
+section.messages .message-right .sender {
+  right: 12px;
+}
+
+section.messages .sender-one {
+  background-image: url('/images/soffes-circle.png');
+}
+
+section.messages .sender-two {
+  background-image: url('/images/random-person-1.png');
+}
+
+section.messages .sender-three {
+  background-image: url('/images/random-person-2.png');
+}
+
+section.messages .sender-four {
+  background-image: url('/images/random-person-3.png');
+}
+
+.signup-link {
+  color: #FFFFFF;
+  text-decoration: none;
+  float: right;
+  margin-top: 8px;
+}
+
+.signup-link:hover {
+  color: #EB0752;
+  text-decoration: none;
+}
+
+.navbar-container {
+  padding-top: 10px;
+}
+
+.small-logo, .full-logo {
+  transition: height 0.4s;
+  -webkit-transition: height 0.4s; /* Safari */
+  -moz-transition: height 0.4s;
+  -o-transition: height 0.4s;
+}
+
+.small-logo {
+  height: 0;
+}
+
+.full-logo {
+  height: 37px;
+}
+
+article.time-ago {
+  position: absolute;
+  bottom: 1px;
+  right: 4px;
+  font-size: 10px;
+  color: #5cbfcb;
 }
 
 @media screen and (max-width: 1100px) {
@@ -394,6 +634,15 @@ div.device .profile-bar {
 @media screen and (max-width: 991px) {
   div.devices {
     width: 85%;
+  }
+
+  .small-logo {
+    height: 37px;
+  }
+
+  .full-logo {
+    height: 0;
+    width: 0;
   }
 }
 

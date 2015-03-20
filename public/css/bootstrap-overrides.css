@@ -21,7 +21,7 @@ a:hover, a:focus {
 
 body {
   /* Margin bottom by footer height */
-  margin-bottom: 71px;
+  /*margin-bottom: 71px;*/
   background: #FFFFFF;
   font-family: 'Source Sans Pro',"Helvetica Neue",Verdana,Arial,sans-serif;
 }
