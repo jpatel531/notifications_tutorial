@@ -65,7 +65,7 @@
 	                  <div class="profile-bar">
 	                    <div class="image"></div>
 	                    <div class="name">Pusher</div>
-	                    <div class="date"><%= "#{Time.now.day.ordinalize} #{Time.now.strftime('%B %Y')}" %></div>
+	                    <div class="date"><%= "#{Time.now.day}#{ordinalize(Time.now.day)} #{Time.now.strftime('%B %Y')}" %></div>
 	                    <div class="followers">
 	                      <i class="icon ion-person"></i>
 	                      101,002
