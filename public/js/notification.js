@@ -57,7 +57,7 @@ $(function() {
 	});
 
 	var pusher = new Pusher('5fc7c2b982b526113bff');
-	var notificationsChannel = pusher.subscribe('notifications');
+	var notificationsChannel = pusher.subscribe(window.channelName);
 	var notificationsReceived = 0;
 	var originalTitle = document.title;
 
@@ -108,7 +108,7 @@ $(function() {
 	var sendNotification = function(){
 		var text = $('input.create-notification').val();
 		if (text === '') return;
-		$.post('/notification', {message: text}).success(function(){
+		$.post('/notification', {message: text, channel: window.channelName}).success(function(){
 			$('input.create-notification').val('');
 		});
 	};
