@@ -2,8 +2,11 @@ GEM
   specs:
     daemons (1.1.9)
     eventmachine (1.0.7)
+    faraday (0.9.0)
+      multipart-post (>= 1.2, < 3)
     httpclient (2.5.3.3)
     multi_json (1.10.1)
+    multipart-post (2.0.0)
     pusher (0.14.2)
       httpclient (~> 2.4)
       multi_json (~> 1.0)
@@ -11,6 +14,8 @@ GEM
     rack (1.6.0)
     rack-protection (1.5.3)
       rack
+    sentry-raven (0.12.3)
+      faraday (>= 0.7.6)
     signature (0.1.7)
     sinatra (1.4.5)
       rack (~> 1.4)
@@ -27,5 +32,6 @@ PLATFORMS
 
 DEPENDENCIES
   pusher
+  sentry-raven
   sinatra
   thin
