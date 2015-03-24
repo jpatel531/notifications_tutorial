@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Realtime Notifications</title>
   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -23,12 +24,16 @@
 	<header class="navbar">
 		<div class="container navbar-container">
 	    <div class="row">
-	      <div class="col-xs-5 col-sm-6">
+	      <div class="col-xs-4 col-sm-6">
 	        <a href="https://pusher.com"><img class="full-logo" src="/images/pusher-logo.png" width="111" height="37"></a>
 	        <a href="https://pusher.com"><img class="small-logo" src="/images/pusher_logo_p.png" height="37"></a>
 	      </div>
-	      <div class="col-xs-7 col-sm-6">
+	      <div class="col-xs-8 col-sm-6">
 	        <a class="signup-link" href='https://pusher.com/signup'>Create a Free Account</a>
+		      <div class="count">
+            <i class="icon ion-chatboxes"></i>
+            <div class="notification-circle"></div>
+          </div>
 	      </div>
 	    </div>
 	  </div>
@@ -39,104 +44,19 @@
       <div class="splash-inner">
         <div class="row">
           <h1 class="page-heading">In-App HTML5 Realtime Notifications</h1>
-          <h4 class="page-subheading">Open your unique URL in another window or on your phone to see the real magic</h4>
+          <h4 class="page-subheading">Open your unique URL in another window or on your phone to send realtime notifications</h4>
         </div>
 
 	      <div class="inputs">
 	        <input type="text" class="create-notification" name="name" placeholder="Type your message here..." autocomplete="off">
 	        <a class="submit-notification btn btn-lg btn-clear btn-wide btn-default">Notify</a>
-
-	        <div class="devices">
-	          <div class="devices-inner">
-	            <div id="ipad" class="device">
-	              <div id="ipad-inner" class="device-inner">
-	                <div class="header">
-	                  <div class="nav">
-	                    <div class="back">
-	                      <i class="icon ion-chevron-left"></i>
-	                    </div>
-	                    <div class="username">Pusher</div>
-	                    <div class="count">
-	                      <i class="icon ion-chatboxes"></i>
-	                      <div class="notification-circle"></div>
-	                    </div>
-	                  </div>
-	                  <div class="header-img"></div>
-	                  <div class="profile-bar">
-	                    <div class="image"></div>
-	                    <div class="name">Pusher</div>
-	                    <div class="date"><%= "#{Time.now.day}#{ordinalize(Time.now.day)} #{Time.now.strftime('%B %Y')}" %></div>
-	                    <div class="followers">
-	                      <i class="icon ion-person"></i>
-	                      101,002
-	                    </div>
-	                  </div>
-	                  <section class="cards">
-	                    <article class="card">
-	                      <header>
-	                        <div class="img img-one"></div>
-	                        <div class="name">Lucy Barker</div>
-	                        <div class="location">London</div>
-	                      </header>
-	                      <div class="body">
-	                        I bought the world's worst thesaurus yesterday.
-	                        <br>
-	                        Not only is it terrible, it's terrible.
-	                      </div>
-	                      <footer>
-	                        <div class="comment">Comment</div>
-	                        <div class="likes">
-	                          <i class="icon ion-android-happy"></i>
-	                          12
-	                        </div>
-	                      </footer>
-	                    </article>
-
-	                    <article class="card">
-	                      <header>
-	                        <div class="img img-two"></div>
-	                        <div class="name">Scott Simpson</div>
-	                        <div class="location"></div>
-	                      </header>
-	                      <div class="body">
-	                        <div class="img"></div>
-	                      </div>
-	                    </article>
-	                    <section class="chat-popup">
-	                      <header>
-	                        <div class="members">Pusher + 3 others</div>
-	                        <div class="cross">
-	                          <i class="icon ion-close"></i>
-	                        </div>
-	                      </header>
-	                      <section class="messages">
-	                      </section>
-	                    </section>
-	                  </section>
-	                </div>
-	              </div>
-	            </div>
-
-	            <div id="iphone" class="device">
-	              <div id="iphone-inner" class="device-inner">
-	                <div class="header">
-	                  <div class="nav">
-	                    <div class="back">
-	                      <i class="icon ion-chevron-left"></i>
-	                    </div>
-	                    <div class="username">Pusher</div>
-	                    <div class="phone">
-	                      <i class="icon ion-ios-telephone"></i>
-	                    </div>
-	                  </div>
-	                </div>
-	                <section class="messages">
-	                </section>
-	              </div>
-	            </div>
-	          </div>
-	        </div>
         </div>
+
+        <section class="notifications-container">
+					<section class="notifications">
+
+					</section>
+        </section>
       </div>
     </header>
   </section>

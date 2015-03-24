@@ -76,7 +76,6 @@ header.navbar {
 .inputs {
   text-align: center;
   position: relative;
-  min-height: 600px;
 }
 
 a.submit-notification {
@@ -90,29 +89,27 @@ div.toast-success {
   font-weight: 200;
   background-color: #69E5B2;
   opacity: 0.9;
+  font-size: 40px;
+  text-align: center;
+}
+
+#toast-container {
+  position: relative;
+}
+
+#toast-container > div {
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 30px;
+  width: 600px;
 }
 
 #toast-container > div, #toast-container > :hover {
   box-shadow: none;
 }
 
-.toast-top-right {
-  top: 50px;
-}
-
 div.device {
   display: inline-block;
-}
-
-.notifications {
-  padding-left: 15px;
-  text-align: left;
-}
-
-.notifications li {
-  list-style: none;
-  margin: 0;
-  padding: 0;
 }
 
 .heading {
@@ -141,6 +138,7 @@ header.splash{
   background: transparent;
   display: table;
   text-align: center;
+  padding-top: 40px;
 }
 
 div.splash-inner{
@@ -180,410 +178,11 @@ div.devices-inner {
   width: 100%;
 }
 
-div#ipad {
-  left: 0;
-  position: absolute;
-  bottom: 0;
-  display:inline-block;
-  width: 440px;
-  height: 540px;
-  background: url('/images/iPad_white_thumb.png');
-  background-size: cover;
-  margin-right: 50px;
-}
-
-div#iphone {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  display: inline-block;
-  width: 260px;
-  height: 470px;
-  background: url('/images/iphone.png');
-  background-size: cover;
-}
-
-div.devices .device {
-  margin-bottom: -10px;
-}
-
-div#ipad-inner {
-  background-color: #C5C5C5;
-  height: 480px;
-  width: 381px;
-  margin-left: 28px;
-  margin-top: 55px;
-}
-
-div#iphone-inner {
-  margin-left: 14px;
-  width: 231px;
-  background-color: #FFFFFF;
-  margin-top: 63px;
-  height: 397px;
-  -webkit-box-shadow: inset 3px 3px 30px -12px rgba(54,54,54,0.65);
-  -moz-box-shadow: inset 3px 3px 30px -12px rgba(54,54,54,0.65);
-  box-shadow: inset 3px 3px 30px -12px rgba(54,54,54,0.65);
-}
-
-div.device-inner .header .nav {
-  height: 40px;
-  width: 100%;
-  background-color: #7FD9E3;
+.count {
   position: relative;
-  font-size: 22px;
-}
-
-div.device-inner .header .nav .back {
-  padding-top: 6px;
-  float: left;
-  width: 40px;
-  height: 100%;
-  border-right: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-#iphone div.device-inner .header .nav .back {
-  width: 30px;
-}
-
-#iphone div.device-inner .header .nav .phone {
-  width: 30px;
-}
-
-div.device-inner .header .nav .count, div.device-inner .header .nav .phone {
-  padding-top: 6px;
   float: right;
-  width: 40px;
-  height: 100%;
-  border-left: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-div.device-inner .header .nav .count {
-  position: relative;
-}
-
-div.device-inner .header .nav .count .notification-circle {
-  position: absolute;
-  right: 3px;
-  top: 3px;
-  background-color: red;
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  opacity: 0;
-  font-size: 10px;
-  text-align: center;
-  -webkit-transition: all 0.1s linear;
-  -moz-transition: all 0.1s linear;
-  -o-transition: all 0.1s linear;
-  transition: all 0.1s linear;
-}
-
-div.device-inner .header .nav .username {
-  padding-top: 6px;
-  width: 100%;
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin: auto;
-  font-size: 18px;
-}
-
-div.device-inner .header .header-img {
-  background-image: url('/images/ipad-header.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 200px;
-}
-
-div.device .profile-bar {
-  position: relative;
-  width: 100%;
-  height: 40px;
-  background-color: #E7E8EE;
-  padding-top: 9px;
-  color: #B9B9B9;
-}
-
-.profile-bar .image {
-  position: absolute;
-  height: 80px;
-  width: 80px;
-  left: 5px;
-  bottom: 15px;
-  border: 3px solid #FFFFFF;
-  background-image: url('/images/soffes.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-.profile-bar .name {
-  float: left;
-  padding-left: 100px;
-}
-
-.profile-bar .followers {
-  float: right;
-  padding-right: 20px;
-}
-
-.profile-bar .date {
-  float: right;
-  padding-right: 15px;
-}
-
-.cards {
-  padding: 10px 5px 0;
-  background-color: #F0F1F6;
-  position: relative;
-}
-
-.cards .card {
-  height: 150px;
-  width: 50%;
-  background-color: white;
-  margin-bottom: 10px;
-  color: #E1E2E3;
-  -webkit-box-shadow: 0px 3px 10px 0px rgba(50, 50, 50, 0.1);
-  -moz-box-shadow:    0px 3px 10px 0px rgba(50, 50, 50, 0.1);
-  box-shadow:         0px 3px 10px 0px rgba(50, 50, 50, 0.1);
-}
-
-.card .img-one {
-  opacity: 0.6;
-  background-image: url('/images/ipad-wall-1.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-.card .img-two {
-  opacity: 0.6;
-  background-image: url('/images/ipad-wall-2.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-.cards .card header {
-  position: relative;
-  width: 100%;
-  height: 42px;
-  border-bottom: 1px solid rgba(225, 226, 227, 0.4);
-}
-
-.cards .card header .img {
-  position: absolute;
-  height: 30px;
-  width: 30px;
-  top: 5px;
-  left: 10px;
-  background-color: blue;
-}
-
-.cards .card header .name {
-  position: absolute;
-  font-size: 12px;
-  left: 50px;
-  top: 5px;
-}
-
-.cards .card header .location {
-  position: absolute;
-  font-size: 9px;
-  left: 50px;
-  top: 22px;
-}
-
-.cards .card .body {
-  padding: 15px 10px;
-  width: 100%;
-  height: 90px;
-  font-size: 12px;
-  text-align: left;
-}
-
-.cards .card footer {
-  width: 100%;
-  height: 20px;
-  background-color: #F3F5F7;
-  color: #D2EEEF;
-  font-size: 12px;
-}
-
-.cards .card footer .comment {
-  float: left;
-  padding-left: 15px;
-}
-
-.cards .card footer .likes {
-  float: right;
-  padding-right: 30px;
-}
-
-.chat-popup {
-  position: absolute;
-  height: 200px;
-  width: 55%;
-  right: 5px;
-  background-color: white;
-  top: 7px;
-  -webkit-box-shadow: -3px -2px 10px 0px rgba(50, 50, 50, 0.2);
-  -moz-box-shadow:    -3px -2px 10px 0px rgba(50, 50, 50, 0.2);
-  box-shadow:         -3px -2px 10px 0px rgba(50, 50, 50, 0.2);
-}
-
-.chat-popup header {
-  position: absolute;
-  width: 210px;
-  height: 30px;
-  background-color: #7FD9E3;
-  color: #FFFFFF;
-  padding: 7px 7px;
-  font-size: 13px;
-  z-index: 2;
-}
-
-.chat-popup header .members {
-  float: left;
-}
-
-.chat-popup header .cross {
-   float: right;
-}
-
-section.messages {
-  margin-top: 30px;
-  height: 80%;
-  width: 100%;
-  overflow: scroll;
-}
-
-section.messages div:last-of-type {
+  font-size: 24px;
   margin-top: 5px;
-  margin-bottom: 5px;
-}
-
-section.messages section:last-of-type {
-  margin-bottom: 15px;
-}
-
-section.messages .message {
-  margin-bottom: 10px;
-  position: relative;
-  overflow: hidden;
-}
-
-section.messages .message-bubble {
-  position: relative;
-  width: 70%;
-  padding: 0px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-  margin-bottom: 5px;
-  color: #5B5B5B;
-  padding: 3px 5px 14px;
-  text-align: left;
-  word-wrap: break-word;
-  -webkit-box-shadow: 0px 2px 4px 0px rgba(50, 50, 50, 0.2);
-  -moz-box-shadow:    0px 2px 4px 0px rgba(50, 50, 50, 0.2);
-  box-shadow:         0px 2px 4px 0px rgba(50, 50, 50, 0.2);
-}
-
-section.messages .message-left .bubble {
-  background: #D3E9E3;
-  float: left;
-  margin-left: 25%;
-}
-
-section.messages .message-left .bubble:after {
-  content: '';
-  position: absolute;
-  border-style: solid;
-  border-width: 7px 10px 7px 0;
-  border-color: transparent #D3E9E3;
-  display: block;
-  width: 0;
-  z-index: 1;
-  left: -10px;
-  top: 14px;
-}
-
-section.messages .message-right .bubble {
-  background: #C9E8F1;
-  float: right;
-  margin-right: 25%;
-}
-
-section.messages .message-right .bubble:after {
-  content: '';
-  position: absolute;
-  border-style: solid;
-  border-width: 7px 0 7px 10px;
-  border-color: transparent #C9E8F1;
-  display: block;
-  width: 0;
-  z-index: 1;
-  right: -10px;
-  top: 14px;
-}
-
-#iphone section.messages {
-  margin-top: 0;
-  height: 90%;
-}
-
-#iphone section.messages div:last-of-type {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-section.messages .message .sender {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
-  position: absolute;
-  top: 15px;
-}
-
-#ipad section.messages .message .sender {
-  top: 12px;
-  width: 26px;
-  height: 26px;
-}
-
-#ipad section.messages .message-left .sender {
-  left: 10px;
-}
-
-#ipad section.messages .message-right .sender {
-  right: 10px;
-}
-
-section.messages .message-left .sender {
-  left: 12px;
-}
-
-section.messages .message-right .sender {
-  right: 12px;
-}
-
-section.messages .sender-one {
-  background-image: url('/images/soffes-circle.png');
-}
-
-section.messages .sender-two {
-  background-image: url('/images/random-person-1.png');
-}
-
-section.messages .sender-three {
-  background-image: url('/images/random-person-2.png');
-}
-
-section.messages .sender-four {
-  background-image: url('/images/random-person-3.png');
 }
 
 .signup-link {
@@ -591,6 +190,7 @@ section.messages .sender-four {
   text-decoration: none;
   float: right;
   margin-top: 8px;
+  margin-left: 25px;
 }
 
 .signup-link:hover {
@@ -617,12 +217,30 @@ section.messages .sender-four {
   height: 37px;
 }
 
-article.time-ago {
+section.notifications-container {
+  text-align: center;
+}
+
+.count .notification-circle {
   position: absolute;
-  bottom: 1px;
-  right: 4px;
-  font-size: 10px;
-  color: #5cbfcb;
+  right: -14px;
+  top: -8px;
+  background-color: #f4065f;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  opacity: 0;
+  font-size: 14px;
+  text-align: center;
+  -webkit-transition: all 0.1s linear;
+  -moz-transition: all 0.1s linear;
+  -o-transition: all 0.1s linear;
+  transition: all 0.1s linear;
+}
+
+section.notifications-container section.notifications {
+  margin-top: 30px;
+  text-align: center;
 }
 
 @media screen and (max-width: 1100px) {
@@ -653,14 +271,7 @@ article.time-ago {
 }
 
 @media screen and (max-width: 760px) {
-  div#ipad{
-    display:none;
-  }
-
-  div#iphone {
-    bottom: -10px;
-    left: 0;
-    right: 0;
-    margin: auto;
+  #toast-container > div {
+    width: 90%;
   }
 }
