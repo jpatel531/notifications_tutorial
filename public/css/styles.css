@@ -138,7 +138,7 @@ header.splash{
   background: transparent;
   display: table;
   text-align: center;
-  padding-top: 40px;
+  padding-top: 60px;
 }
 
 div.splash-inner{
@@ -223,14 +223,14 @@ section.notifications-container {
 
 .count .notification-circle {
   position: absolute;
-  right: -14px;
-  top: -8px;
+  right: -13px;
+  top: -7px;
   background-color: #f4065f;
-  width: 22px;
-  height: 22px;
+  width: 19px;
+  height: 19px;
   border-radius: 50%;
   opacity: 0;
-  font-size: 14px;
+  font-size: 13px;
   text-align: center;
   -webkit-transition: all 0.1s linear;
   -moz-transition: all 0.1s linear;
