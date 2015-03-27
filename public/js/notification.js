@@ -41,16 +41,7 @@ $(function() {
 		}
 	}
 
-	function scrollToBottomOfMessageSections() {
-		$.makeArray($("section.messages")).forEach(function(el) {
-		$(el).animate({
-		    scrollTop: $(el)[0].scrollHeight
-		  }, 600);
-		 });
-	}
-
 	moveDevicesToBottom();
-	scrollToBottomOfMessageSections();
 
   $(window).smartresize(function(){
 	  moveDevicesToBottom();
@@ -61,13 +52,11 @@ $(function() {
 	var notificationsReceived = 0;
 	var originalTitle = document.title;
 
-	function addMessageTo(device, message, side, userImgNum) {
+	function addNotificationTo(device, message) {
 		var id = notificationsReceived;
-		var now = new Date();
-		$('#' + device + ' .messages').append(
-			"<section class='message message-" + side + "'><div class='sender sender-" + userImgNum + "'></div><div class='message-bubble bubble'>" + message + "<article class='time-ago message-" + id + "'>" + moment(now).fromNow() + "</div></section>"
+		$('#' + device + ' .notifications').append(
+			"<section class='notification'>" + message + "</section>"
 		)
-		update(id, now);
 	}
 
 	notificationsChannel.bind('new_notification', function(notification){
@@ -85,25 +74,14 @@ $(function() {
 
 		document.title = "(" + notificationsReceived + ") " + originalTitle;
 
-		// add message to devices
-		var userImgNums = ['two', 'four'];
-		var side = notificationsReceived % 2 == 0 ? 'left' : 'right';
-		var userImgNum = side == 'left' ? 'one' : userImgNums[Math.floor(Math.random()*userImgNums.length)];
-		addMessageTo('ipad', notification.message, side, userImgNum);
-		addMessageTo('iphone', notification.message, side, userImgNum);
+		// add notification to devices
+		addNotificationTo('ipad', notification.message);
+		addNotificationTo('iphone', notification.message);
 
 		// toastr notifications
 		var message = notification.message;
 		toastr.success(message);
-
-		scrollToBottomOfMessageSections();
 	});
-
-	var update = function(id, now) {
-		setInterval(function(){
-			$('article.message-'+id).text(moment(now).fromNow())
-		}, 5000)
-	}
 
 	var sendNotification = function(){
 		var text = $('input.create-notification').val();
