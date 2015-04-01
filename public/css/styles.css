@@ -100,21 +100,76 @@ div.toast-success {
   top: 50px;
 }
 
+.browser-wrapper {
+  padding: 36px 0 0 0;
+  border-radius: 3px;
+  background: #ddd;
+  display: inline-block;
+  position: relative;
+  line-heigth: 0;
+  overflow: hidden;
+}
 
+.browser-container {
+  width: 720px;
+  height: 400px;
+}
+
+.browser-wrapper .browser-navigation-bar {
+  display: block;
+  height: 36px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #F0F0F0;
+  padding: 4px 2px;
+  border-top-right-radius: 4px;
+}
+
+#browser-address-bar {
+  background-color: #FFFFFF;
+}
+
+.browser-wrapper input {
+  clear: both;
+  height: 20px;
+  color: #aaa;
+  width: calc(100% - 28px);
+  border: 0;
+  border-radius: 2px;
+  background-color: #eee;
+  float: left;
+  margin: 3px 0 0 4px;
+  padding: 0 8px 0 8px;
+  display: block;
+}
+
+.notification-container {
+  border-top: 15px solid #00004C;
+  padding: 5%;
+  width: 100%;
+  margin: 0 auto;
+  height: 40px;
+  background-color: rgba(105, 229, 178, 0.75);
+  -webkit-transition: background-color 0.15s linear;
+  -moz-transition: background-color 0.15s linear;
+  -o-transition: background-color 0.15s linear;
+  transition: background-color 0.15s linear;
+}
+
+.notification-container:hover {
+  background-color: rgba(105, 229, 178, 0.95);
+}
+
+.notification-container .tick {
+  float: left;
+  width: 30px;
+  height: 100%;
+}
 
 div.device {
   display: inline-block;
-}
-
-.notifications {
-  padding-left: 15px;
-  text-align: left;
-}
-
-.notifications li {
-  list-style: none;
-  margin: 0;
-  padding: 0;
 }
 
 .heading {
@@ -182,29 +237,6 @@ div.devices-inner {
   width: 100%;
 }
 
-div#ipad {
-  left: 0;
-  position: absolute;
-  bottom: 0;
-  display:inline-block;
-  width: 440px;
-  height: 540px;
-  background: url('/images/iPad_white_thumb.png');
-  background-size: cover;
-  margin-right: 50px;
-}
-
-div#iphone {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  display: inline-block;
-  width: 260px;
-  height: 470px;
-  background: url('/images/iphone.png');
-  background-size: cover;
-}
-
 div.devices .device {
   margin-bottom: -10px;
 }
@@ -229,69 +261,6 @@ div#iphone-inner {
   -moz-box-shadow: inset 0px 0px 5px rgba(54,54,54,0.45);
   -webkit-box-shadow: inset 0px 0px 5px rgba(54,54,54,0.45);
   box-shadow: inset 0px 0px 5px rgba(54,54,54,0.45);
-}
-
-div.device-inner .header .nav {
-  height: 40px;
-  width: 100%;
-  background-color: #7FD9E3;
-  position: relative;
-  font-size: 22px;
-}
-
-div.device-inner .header .nav .back {
-  padding-top: 6px;
-  float: left;
-  width: 40px;
-  height: 100%;
-  border-right: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-#iphone div.device-inner .header .nav .back {
-  width: 30px;
-}
-
-#iphone div.device-inner .header .nav .phone {
-  width: 30px;
-}
-
-div.device-inner .header .nav .count, div.device-inner .header .nav .phone {
-  padding-top: 6px;
-  float: right;
-  width: 40px;
-  height: 100%;
-  border-left: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-div.device-inner .header .nav .count {
-  position: relative;
-}
-
-div.device-inner .header .nav .count .notification-circle {
-  position: absolute;
-  right: 3px;
-  top: 3px;
-  background-color: red;
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  opacity: 0;
-  font-size: 10px;
-  text-align: center;
-  -webkit-transition: all 0.1s linear;
-  -moz-transition: all 0.1s linear;
-  -o-transition: all 0.1s linear;
-  transition: all 0.1s linear;
-}
-
-div.device-inner .header .nav .username {
-  padding-top: 6px;
-  width: 100%;
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin: auto;
-  font-size: 18px;
 }
 
 .signup-link {
@@ -325,6 +294,181 @@ div.device-inner .header .nav .username {
   height: 37px;
 }
 
+#browser-window, #iphone {
+  position: absolute;
+  bottom: 0;
+}
+
+#browser-window {
+  bottom: -10px;
+}
+
+#iphone {
+  left: 0;
+  bottom: -115px;
+}
+
+.marvel-device.iphone6 {
+  position: relative;
+  width: 335px;
+  height: 610px;
+  z-index: 2;
+  -moz-box-shadow: 5px -2px 15px rgba(54,54,54,0.35);
+  -webkit-box-shadow: 5px -2px 15px rgba(54,54,54,0.35);
+  box-shadow: 5px -2px 15px rgba(54,54,54,0.35);
+}
+
+.marvel-device.iphone6 .screen {
+  box-shadow: 0 0 0 1px #111111;
+  overflow: hidden;
+}
+
+.marvel-device.iphone6 .screen .inner-screen {
+  background-image: url('/images/trello-mobile.png');
+}
+
+#browser-window .inner-screen {
+  background-image: url('/images/trello-browser.png');
+}
+
+.devices .inner-screen {
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+}
+
+.native-notification {
+  height: 70px;
+  width: 100%;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.85);
+  color: #FFFFFF;
+  text-align: left;
+  overflow: hidden;
+  position: relative;
+  visibility: hidden;
+}
+
+.drag-down-bar {
+  margin: auto;
+  width: 30px;
+  height: 4px;
+  background-color: rgba(220, 220, 220, 0.7);
+  border-radius: 10px;
+  position: absolute;
+  bottom: 4px;
+  left: 0;
+  right: 0;
+}
+
+.nat-not-components {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.native-notification .logo {
+  height: 22px;
+  width: 16px;
+  background-image: url('/images/pusher_logo_p.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 7px;
+  left: 8px;
+}
+
+.native-notification .name {
+  display: inline-block;
+  position: absolute;
+  top: 5px;
+  font-weight: 400;
+  left: 30px;
+}
+
+.native-notification .time-ago {
+  margin-left: 8px;
+  display: inline-block;
+  position: absolute;
+  top: 5px;
+  left: 142px;
+  color: #868289;
+}
+
+.native-notification .message {
+  display: inline-block;
+  position: absolute;
+  top: 26px;
+  font-weight: 100;
+  line-height: 1.1;
+  margin-right: 5px;
+  left: 30px;
+  text-align: left;
+  z-index: 1;
+}
+
+#browser-window .notifications {
+  position: absolute;
+  top: 36px;
+  height: 100%;
+  right: 0;
+  width: 236px;
+  text-align: center;
+}
+
+.html5-notification {
+  position: relative;
+  margin: 8px;
+  width: 220px;
+  height: 55px;
+  background-color: #FFFFFF;
+}
+
+.html5-notification .left-box {
+  background-color: #EAEAEA;
+  width: 50px;
+  height: 100%;
+  display: inline-block;
+  float: left;
+}
+
+.html5-notification .message {
+  display: inline-block;
+  float: left;
+  color: #353535;
+  padding: 10px;
+  height: 30px;
+  width: 145px;
+  text-align: left;
+}
+
+.html5-notification .cross {
+  background-color: #676767;
+  border-radius: 50%;
+  height: 14px;
+  width: 14px;
+  display: inline-block;
+  position: relative;
+  float: right;
+  margin: 5px;
+}
+
+.html5-notification .cross .ion-close {
+  font-size: 10px;
+  position: absolute;
+  top: 1px;
+  left: 3px;
+}
+
+#browser-window {
+  right: -20px;
+}
+
+section.mobile.native-notification {
+  height: 0;
+}
+
 @media screen and (max-width: 1100px) {
   div.devices {
     width: 75%;
@@ -347,20 +491,36 @@ div.device-inner .header .nav .username {
 }
 
 @media screen and (max-width: 848px) {
+  div#browser-window{
+    display:none;
+  }
+
+  div#iphone {
+    bottom: -120px;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+
   div.devices {
     width: 95%;
   }
 }
 
 @media screen and (max-width: 760px) {
-  div#ipad{
+  div#browser-window{
     display:none;
   }
 
   div#iphone {
-    bottom: -10px;
-    left: 0;
-    right: 0;
-    margin: auto;
+    display:none;
+  }
+
+  section.mobile.native-notification {
+    visibility: hidden;
+  }
+
+  a.submit-notification {
+    margin-top: 20px;
   }
 }

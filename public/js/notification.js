@@ -1,19 +1,19 @@
-$(function() {
+$(function () {
 
-	// add in debounced resize for jQuery
-	(function($,sr){
-	  var debounce = function (func, threshold, execAsap) {
-	      var timeout;
-	      return function debounced () {
-	          var obj = this, args = arguments;
-	          function delayed () {
+  // add in debounced resize for jQuery
+  (function ($, sr) {
+    var debounce = function (func, threshold, execAsap) {
+        var timeout;
+        return function debounced() {
+            var obj = this, args = arguments;
+            function delayed () {
               if (!execAsap)
                 func.apply(obj, args);
               timeout = null;
-	          };
-	          if (timeout)
+            };
+            if (timeout)
               clearTimeout(timeout);
-	          else if (execAsap)
+            else if (execAsap)
               func.apply(obj, args);
 
 	          timeout = setTimeout(delayed, threshold || 100);
@@ -51,36 +51,109 @@ $(function() {
 	var notificationsChannel = pusher.subscribe(window.channelName);
 	var notificationsReceived = 0;
 	var originalTitle = document.title;
+	var nativeNotificationRetainCount = 0;
 
-	function addNotificationTo(device, message) {
-		var id = notificationsReceived;
-		$('#' + device + ' .notifications').append(
-			"<section class='notification'>" + message + "</section>"
-		)
+	function removeNativeNotificationIn(milliseconds, element, setHeightToZero) {
+		window.setTimeout(function() {
+			nativeNotificationRetainCount--;
+			if (nativeNotificationRetainCount == 0) {
+				if (setHeightToZero) {
+					$('.mobile.native-notification').animate({
+						height: '0'
+					}, 600, 'easeInOutCubic')
+				}
+				element.addClass('fadeOutUp');
+				element.one('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function() {
+					$('.nat-not-components').remove();
+				});
+			}
+		}, milliseconds);
 	}
 
-	notificationsChannel.bind('new_notification', function(notification){
+	function removeHTML5NotificationIn(milliseconds, element) {
+		window.setTimeout(function() {
+			element.addClass('animated fadeOutRight');
+			element.one('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function() {
+				$(this).hide('slow', function(){ $(this).remove(); });
+			});
+		}, milliseconds);
+	}
 
-		// handle incrementing notification received counter
-		notificationsReceived ++;
-		if (notificationsReceived == 1) {
-			$('.notification-circle').css('opacity', '1');
-			$('.notification-circle').text(notificationsReceived);
-		} else if (notificationsReceived > 99) {
-			$('.notification-circle').text('...');
+	function addNotificationToiPhone(message) {
+		var iPhoneNativeNotificationBox = $('.native-notification');
+		if (nativeNotificationRetainCount == 0) {
+			iPhoneNativeNotificationBox.css({'visibility':'visible'});
+			iPhoneNativeNotificationBox.removeClass('fadeOutUp');
+			iPhoneNativeNotificationBox.addClass('fadeInDown');
 		} else {
-			$('.notification-circle').text(notificationsReceived);
+			$('.nat-not-components').first().animate({
+				opacity: '0',
+				height: '0'
+			}, 600, 'easeInOutCubic');
 		}
 
+		nativeNotificationRetainCount++;
+		removeNativeNotificationIn(4000, iPhoneNativeNotificationBox);
+
+		var notification = $("<div class='nat-not-components' style='height:0;opacity:0;'><div class='logo'></div><div class='name'>Pusher Notification</div><div class='time-ago'>now</div><div class='message'>" + message + "</div></div>")
+		$('#iphone .inner-screen .native-notification').prepend(notification);
+		notification.animate({
+			opacity: '1',
+			height: '100%'
+		}, 600, 'easeInCubic');
+
+		$('.native-notification .message').dotdotdot({ height: 30 });
+	}
+
+	function addNotificationToBrowser(message) {
+    var notification = $("<section class='html5-notification animated fadeInUp'><div class='left-box'></div><div class='message'>" + message + "</div><div class='cross'><i class='icon ion-close'></i></div></section>").hide();
+		$('.browser-container .inner-screen .notifications').append(notification);
+		notification.css({'display':'block'});
+		removeHTML5NotificationIn(4000, notification);
+		$('.html5-notification .message').dotdotdot({ height: 30 });
+	}
+
+	function addFakeNativeNotification(message) {
+		var mobileNativeNotificationBox = $('.mobile.native-notification');
+		if (nativeNotificationRetainCount == 0) {
+			mobileNativeNotificationBox.css({'visibility':'visible'});
+			mobileNativeNotificationBox.animate({ height: '70px' }, 600, 'easeInOutCubic')
+			$('html, body').animate({ scrollTop: 0 }, 100);
+			mobileNativeNotificationBox.removeClass('fadeOutUp');
+			mobileNativeNotificationBox.addClass('fadeInDown');
+		} else {
+			$('.nat-not-components').first().animate({
+				opacity: '0',
+				height: '0'
+			}, 600, 'easeInOutCubic');
+		}
+
+		nativeNotificationRetainCount++;
+		removeNativeNotificationIn(4000, mobileNativeNotificationBox, true);
+
+		var notification = $("<div class='nat-not-components' style='height:0;opacity:0;'><div class='logo'></div><div class='name'>Pusher Notification</div><div class='time-ago'>now</div><div class='message'>" + message + "</div></div>")
+		mobileNativeNotificationBox.prepend(notification);
+		notification.animate({
+			opacity: '1',
+			height: '100%'
+		}, 600, 'easeInCubic');
+
+		$('.mobile.native-notification .message').dotdotdot({ height: 30 });
+	}
+
+	$('#browser-address-bar').val(document.URL);
+
+	notificationsChannel.bind('new_notification', function(notification){
+		notificationsReceived ++;
 		document.title = "(" + notificationsReceived + ") " + originalTitle;
 
 		// add notification to devices
-		addNotificationTo('ipad', notification.message);
-		addNotificationTo('iphone', notification.message);
-
-		// toastr notifications
-		var message = notification.message;
-		toastr.success(message);
+		if ($(window).width() < 760) {
+			addFakeNativeNotification(notification.message);
+		} else {
+			addNotificationToBrowser(notification.message);
+			addNotificationToiPhone(notification.message);
+		}
 	});
 
 	var sendNotification = function(){

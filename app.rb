@@ -50,6 +50,6 @@ end
 post '/notification' do
 	message = params[:message]
 	Pusher.trigger("#{params[:channel]}", 'new_notification', {
-		message: CGI.escape(message)
+		message: CGI.escapeHTML(message)
 	})
 end
