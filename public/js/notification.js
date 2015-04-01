@@ -49,8 +49,6 @@ $(function () {
 
 	var pusher = new Pusher('5fc7c2b982b526113bff');
 	var notificationsChannel = pusher.subscribe(window.channelName);
-	var notificationsReceived = 0;
-	var originalTitle = document.title;
 	var nativeNotificationRetainCount = 0;
 
 	function removeNativeNotificationIn(milliseconds, element, setHeightToZero) {
@@ -144,9 +142,6 @@ $(function () {
 	$('#browser-address-bar').val(document.URL);
 
 	notificationsChannel.bind('new_notification', function(notification){
-		notificationsReceived ++;
-		document.title = "(" + notificationsReceived + ") " + originalTitle;
-
 		// add notification to devices
 		if ($(window).width() < 760) {
 			addFakeNativeNotification(notification.message);
