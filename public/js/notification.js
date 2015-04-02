@@ -141,8 +141,18 @@ $(function () {
 
 	$('#browser-address-bar').val(document.URL);
 
+	function addTutorialLink() {
+		if ($('.tutorial-link').height() == 0) {
+			$('.tutorial-link').animate({
+				height: '30px',
+				opacity: '1'
+			});
+		}
+	}
+
 	notificationsChannel.bind('new_notification', function(notification){
 		// add notification to devices
+		addTutorialLink()
 		if ($(window).width() < 760) {
 			addFakeNativeNotification(notification.message);
 		} else {

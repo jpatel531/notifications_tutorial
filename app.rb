@@ -38,8 +38,7 @@ get // do
   if request.path_info == "/"
     rand_noun = $nouns.sample
     rand_adj = $adjectives.sample
-    rand_num = SecureRandom.random_number(99) + 1
-    @channel_name = "#{rand_adj}-#{rand_noun}-#{rand_num}"
+    @channel_name = "#{rand_adj}-#{rand_noun}"
     redirect "/#{@channel_name}"
   else
     @channel_name = request.path_info.split('/')[-1]
