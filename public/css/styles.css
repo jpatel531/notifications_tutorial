@@ -85,19 +85,8 @@ a.submit-notification {
   z-index: 1;
 }
 
-div.toast-success {
-  font-family: 'Source Sans Pro', sans-serif;
-  font-weight: 200;
-  background-color: #69E5B2;
-  opacity: 0.9;
-}
-
-#toast-container > div, #toast-container > :hover {
-  box-shadow: none;
-}
-
-.toast-top-right {
-  top: 50px;
+.btn {
+  font-weight: 300;
 }
 
 .browser-wrapper {
